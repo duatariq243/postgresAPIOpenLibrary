@@ -1,0 +1,15 @@
+<%- include("partials/header.ejs") %>
+
+<h1 class="page-title">Edit Book</h1>
+
+<form action="/edit/<%= book.id %>" method="post" class="edit-form">
+  <label>Title</label>
+  <input class="input" type="text" name="title" value="<%= book.title %>">
+
+  <label>Author</label>
+  <input class="input" type="text" name="author" value="<%= book.author %>">
+
+  <button class="btn">Save</button>
+</form>
+
+<%- include("partials/footer.ejs") %>

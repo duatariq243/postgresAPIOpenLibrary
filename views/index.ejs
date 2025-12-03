@@ -1,0 +1,36 @@
+<%- include("partials/header.ejs") %>
+
+<h1 class="page-title">My Saved Books</h1>
+
+<div class="books-grid">
+  <% books.forEach(book => { %>
+    <div class="book-card">
+
+      <% if (book.cover_id) { %>
+        <img 
+          class="book-cover"
+          src="https://covers.openlibrary.org/b/id/<%= book.cover_id %>-L.jpg"
+          alt="<%= book.title %>"
+        >
+      <% } else { %>
+        <div class="no-cover">No Cover</div>
+      <% } %>
+
+      <h3><%= book.title %></h3>
+      <p class="author">By <%= book.author %></p>
+
+      <div class="card-buttons">
+        <form action="/edit/<%= book.id %>" method="get">
+          <button class="btn small">Edit</button>
+        </form>
+
+        <form action="/delete/<%= book.id %>" method="post">
+          <button class="btn small danger">Delete</button>
+        </form>
+      </div>
+
+    </div>
+  <% }) %>
+</div>
+
+<%- include("partials/footer.ejs") %>

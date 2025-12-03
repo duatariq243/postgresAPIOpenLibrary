@@ -1,0 +1,40 @@
+<%- include("partials/header.ejs") %>
+
+<h1 class="page-title">Search Books</h1>
+
+<form action="/search" method="post" class="search-box">
+  <input type="text" name="query" placeholder="Search any book..." class="input">
+  <button class="btn">Search</button>
+</form>
+
+<% if(results) { %>
+  <div class="books-grid">
+    <% results.forEach(book => { %>
+      <div class="book-card">
+
+        <% if(book.cover_id) { %>
+          <img 
+            src="https://covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg"
+            class="book-cover"
+          />
+        <% } else { %>
+          <div class="no-cover">No Cover</div>
+        <% } %>
+
+        <h3><%= book.title %></h3>
+        <p class="author"><%= book.author %></p>
+
+        <form action="/add" method="post">
+          <input type="hidden" name="title" value="<%= book.title %>">
+          <input type="hidden" name="author" value="<%= book.author %>">
+          <input type="hidden" name="cover_id" value="<%= book.cover_id %>">
+
+          <button class="btn">Add</button>
+        </form>
+
+      </div>
+    <% }) %>
+  </div>
+<% } %>
+
+<%- include("partials/footer.ejs") %>
