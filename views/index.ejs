@@ -1,6 +1,10 @@
 <%- include("partials/header.ejs") %>
 
 <h1 class="page-title">My Saved Books</h1>
+<p style="text-align:center; margin-bottom:30px; color:#6b7280;">
+  Track your favorite books easily. Add, edit, and search books with ease.
+</p>
+
 
 <div class="books-grid">
   <% books.forEach(book => { %>
@@ -23,7 +27,7 @@
         <form action="/edit/<%= book.id %>" method="get">
           <button class="btn small">Edit</button>
         </form>
-
+     <br>
         <form action="/delete/<%= book.id %>" method="post">
           <button class="btn small danger">Delete</button>
         </form>

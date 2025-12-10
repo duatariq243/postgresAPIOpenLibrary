@@ -1,6 +1,10 @@
 <%- include("partials/header.ejs") %>
 
 <h1 class="page-title">Search Books</h1>
+<p style="text-align:center; margin-bottom:30px; color:#6b7280;">
+  Discover new books from Open Library and save them to your collection.
+</p>
+
 
 <form action="/search" method="post" class="search-box">
   <input type="text" name="query" placeholder="Search any book..." class="input">
@@ -36,5 +40,26 @@
     <% }) %>
   </div>
 <% } %>
+
+<script>
+async function addBook(e) {
+  e.preventDefault();
+  const token = localStorage.getItem('token'); // store token after login
+  const title = document.querySelector('#title').value;
+  const author = document.querySelector('#author').value;
+  const cover_id = document.querySelector('#cover_id').value;
+
+  const res = await fetch('/add', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({ title, author, cover_id })
+  });
+
+  if(res.ok) window.location.reload();
+}
+</script>
 
 <%- include("partials/footer.ejs") %>

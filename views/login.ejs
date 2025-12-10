@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    .message { color: red; margin-bottom: 10px; }
+    .signup-link { margin-top: 15px; display: block; }
+  </style>
+</head>
+<body>
+  <h2>Login</h2>
+
+  <% if (query.message) { %>
+    <p class="message"><%= query.message %></p>
+  <% } %>
+
+  <form action="/login" method="POST">
+    <input type="email" name="email" placeholder="Email" required /><br/><br/>
+    <input type="password" name="password" placeholder="Password" required /><br/><br/>
+    <button type="submit">Login</button>
+  </form>
+
+  <!-- Signup link/button -->
+  <a href="/register" class="signup-link">Don't have an account? Sign up here</a>
+</body>
+</html>
